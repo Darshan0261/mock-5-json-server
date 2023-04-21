@@ -18,19 +18,15 @@
       "name": "Tommy",
       "gender": "male",
       "age": 20,
-      "place": "Parola"
+      "place": "Parola",
+      "id": 3
     },
     {
       "name": "Tommy",
       "gender": "male",
       "age": 20,
-      "place": "Parola"
-    },
-    {
-      "name": "Tommy",
-      "gender": "male",
-      "age": 20,
-      "place": "Parola"
+      "place": "Parola",
+      "id": 4
     }
   ]
 }
