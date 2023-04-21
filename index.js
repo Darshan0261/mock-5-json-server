@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import { LowSync } from "lowdb";
 import { JSONFileSync } from "lowdb/node";
 import ShortUniqueId from "short-unique-id";
+import cors from 'cors';
 import jwt from 'jsonwebtoken';
 const serverPort = 4500;
 
@@ -20,6 +21,7 @@ const server = jsonServer.create();
 const router = jsonServer.router(join(__dirname, 'db.json'));
 
 server.use(jsonServer.bodyParser);
+server.use(cors())
 
 server.get('/', (req, res) => {
   res.send('Base API endpoint')
