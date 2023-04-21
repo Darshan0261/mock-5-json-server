@@ -21,7 +21,7 @@ const server = jsonServer.create();
 const router = jsonServer.router(join(__dirname, 'db.json'));
 
 server.use(jsonServer.bodyParser);
-server.use(cors())
+server.use(jsonServer.cors())
 
 server.get('/', (req, res) => {
   res.send('Base API endpoint')
