@@ -1,39 +1,61 @@
 {
-  "dogs": [
-    {
-      "id": 1,
-      "name": "Cherry",
-      "age": 2,
-      "place": "Visakhapatnam",
-      "gender": "Male"
-    },
-    {
-      "id": 2,
-      "name": "Tommy",
-      "age": 3,
-      "place": "Banglore",
-      "gender": "Female"
-    },
-    {
-      "name": "Tommy",
-      "gender": "male",
-      "age": 20,
-      "place": "Parola",
-      "id": 3
-    },
-    {
-      "name": "Tommy",
-      "gender": "male",
-      "age": 20,
-      "place": "Parola",
-      "id": 4
-    },
-    {
-      "name": "Tommy",
-      "gender": "female",
-      "age": "15",
-      "place": "Mumbai",
-      "id": 5
-    }
-  ]
-}
+    "dogs": [
+      {
+        "name": "Tommy",
+        "gender": "male",
+        "age": 20,
+        "place": "parola",
+        "id": 1
+      },
+      {
+        "name": "Tommy Choo",
+        "gender": "male",
+        "age": "2011",
+        "place": "Parola",
+        "id": 3
+      },
+      {
+        "name": "Tommy",
+        "gender": "male",
+        "age": 20,
+        "place": "parola",
+        "id": 4
+      },
+      {
+        "name": "Tommy",
+        "gender": "male",
+        "age": 20,
+        "place": "parola",
+        "id": 5
+      },
+      {
+        "name": "Tommy",
+        "gender": "male",
+        "age": 20,
+        "place": "parola",
+        "id": 7
+      },
+      {
+        "name": "choo",
+        "gender": "male",
+        "age": "10",
+        "place": "parola",
+        "id": 8
+      },
+      {
+        "name": "Julie",
+        "gender": "female",
+        "age": "101",
+        "place": "parola",
+        "id": 10
+      }
+    ],
+    "users": [
+      {
+        "id": 1,
+        "name": "Darshan",
+        "email": "darshan@mail.com",
+        "password": "darshan@22"
+      }
+    ]
+  }

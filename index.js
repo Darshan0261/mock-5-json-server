@@ -41,7 +41,7 @@ server.post('/dogs', (req, res) => {
   db.read();
   const { dogs } = db.data;
   const dog = { name, gender, age, place };
-  dog.id = dogs.length == 0 ? 1 : dogs[dogs.length-1] + 1;
+  dog.id = dogs.length == 0 ? 1 : dogs[dogs.length-1].id + 1;
   dogs.push(dog);
   db.write();
   return res.status(200).send({ message: 'successfully registered' })
