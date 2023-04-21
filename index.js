@@ -27,17 +27,17 @@ server.get('/', (req, res) => {
   res.send('Base API endpoint')
 })
 
-server.post('/dogs/add', (req, res) => {
+server.post('/dogs/add', async (req, res) => {
   const { name, gender, age, place } = req.body;
   if (!name || !gender || !age || !place) {
     return res.status(409).send({ message: 'All Feilds Needed' });
   }
-  db.read();
+  await db.read();
   const { dogs } = db.data;
   const dog = { name, gender, age, place };
   dog.id = new ShortUniqueId();
   dogs.push(dog);
-  db.write();
+  await db.write();
   return res.status(200).send({ message: 'successfully registered' })
 })
 
