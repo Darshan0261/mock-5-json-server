@@ -7,14 +7,18 @@ import { JSONFileSync } from "lowdb/node";
 import ShortUniqueId from "short-unique-id";
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
+import fs from 'fs';
+import dotenv from 'dotenv';
 const serverPort = 4500;
+dotenv.config()
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const file = path.join(__dirname, 'db.json');
 const adapter = new JSONFileSync(file);
-const db = new LowSync(adapter, { dogs: [], users: [] });
+const db_file = fs.readFileSync('db.json', { encoding: 'utf-8' })
+const db = new LowSync(adapter, JSON.parse(db_file));
 const uid = new ShortUniqueId({ length: 10 })
 
 const server = jsonServer.create();
@@ -37,7 +41,7 @@ server.post('/dogs', (req, res) => {
   db.read();
   const { dogs } = db.data;
   const dog = { name, gender, age, place };
-  dog.id = dogs[dogs.length - 1].id + 1;
+  dog.id = dogs.length == 0 ? 1 : dogs[dogs.length-1] + 1;
   dogs.push(dog);
   db.write();
   return res.status(200).send({ message: 'successfully registered' })
