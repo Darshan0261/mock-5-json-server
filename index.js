@@ -1,10 +1,11 @@
 import jsonServer from "json-server";
-import path from "path"; 
+import path from "path";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { LowSync } from "lowdb";
 import { JSONFileSync } from "lowdb/node";
 import ShortUniqueId from "short-unique-id";
+import jwt from 'jsonwebtoken';
 const serverPort = 4500;
 
 const __filename = fileURLToPath(import.meta.url);
@@ -24,10 +25,33 @@ server.get('/', (req, res) => {
   res.send('Base API endpoint')
 })
 
+server.post('/dogs/add', (req, res) => {
+  const { name, gender, age, place } = req.body;
+  if (!name || !gender || !age || !place) {
+    return res.status(409).send({ message: 'All Feilds Needed' });
+  }
+  db.read();
+  const { dogs } = db.data;
+  const dog = { name, gender, age, place };
+  dog.id = new ShortUniqueId();
+  dogs.push(dog);
+  db.write();
+  return res.status(200).send({ message: 'successfully registered' })
+})
+
 server.use(router);
 
-server.listen( serverPort, () => {
+server.listen(serverPort, () => {
   console.log(
     `JSON Server is running at http://localhost:${serverPort}`
   );
 });
+
+
+// function authentication(req, res, next) {
+//   const token = req.headers.authorization;
+//   if (!token) {
+//     return res.status(401).send({ message: 'Access Denied' })
+//   }
+//   jwt.verify(token, process.env.JSON_WEB_KEY, )
+// }
