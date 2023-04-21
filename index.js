@@ -1,12 +1,12 @@
-const jsonServer = require("json-server") ;
-const path = require("path");
-const { join, dirname } = require("node:path");
-const { fileURLToPath } = require("node:url");
-const { LowSync } = require("lowdb");
-const { JSONFileSync } = require("lowdb/node");
-const ShortUniqueId = require("short-unique-id");
-const cors = require('cors');
-const jwt = require('jsonwebtoken');
+import jsonServer from "json-server";
+import path from "path";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import { LowSync } from "lowdb";
+import { JSONFileSync } from "lowdb/node";
+import ShortUniqueId from "short-unique-id";
+import cors from 'cors';
+import jwt from 'jsonwebtoken';
 const serverPort = 4500;
 
 const __filename = fileURLToPath(import.meta.url);
