@@ -19,9 +19,11 @@ const uid = new ShortUniqueId({ length: 10 })
 
 const server = jsonServer.create();
 const router = jsonServer.router(join(__dirname, 'db.json'));
+const middlewares = jsonServer.defaults()
 
-server.use(jsonServer.bodyParser);
 server.use(cors())
+server.use(jsonServer.bodyParser);
+server.use(middlewares)
 
 server.get('/', (req, res) => {
   res.send('Base API endpoint')

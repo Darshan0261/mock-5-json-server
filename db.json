@@ -19,6 +19,12 @@
       "gender": "male",
       "age": 20,
       "place": "Parola"
+    },
+    {
+      "name": "Tommy",
+      "gender": "male",
+      "age": 20,
+      "place": "Parola"
     }
   ]
 }
