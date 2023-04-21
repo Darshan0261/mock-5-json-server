@@ -14,7 +14,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const file = path.join(__dirname, 'db.json');
 const adapter = new JSONFileSync(file);
-const db = new LowSync(adapter, []);
+const db = new LowSync(adapter, { dogs: [], users: [] });
 const uid = new ShortUniqueId({ length: 10 })
 
 const server = jsonServer.create();
@@ -37,10 +37,29 @@ server.post('/dogs', (req, res) => {
   db.read();
   const { dogs } = db.data;
   const dog = { name, gender, age, place };
-  dog.id = dogs[dogs.length-1].id + 1;
+  dog.id = dogs[dogs.length - 1].id + 1;
   dogs.push(dog);
   db.write();
   return res.status(200).send({ message: 'successfully registered' })
+})
+
+server.post('/users/login', (req, res) => {
+  const { email, password } = req.body;
+  db.write()
+  const { users } = db.data;
+  let user;
+  users.forEach(ele => {
+    if (email == ele.email) {
+      user = ele;
+    }
+  })
+  if (!user) {
+    return res.status(404).send({ message: 'User not found' });
+  }
+  if (user.password == password) {
+    const token = jwt.sign({ id: user.id }, process.env.JSON_PRIVATE_KEY, { expiresIn: '6h' });
+    return res.send({ message: 'Login Sucessfull', token })
+  }
 })
 
 server.use(router);
