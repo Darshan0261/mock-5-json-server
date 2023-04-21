@@ -29,19 +29,19 @@ server.get('/', (req, res) => {
   res.send('Base API endpoint')
 })
 
-server.post('/dogs', async (req, res) => {
-  const { name, gender, age, place } = req.body;
-  if (!name || !gender || !age || !place) {
-    return res.status(409).send({ message: 'All Feilds Needed' });
-  }
-  await db.read();
-  const { dogs } = db.data;
-  const dog = { name, gender, age, place };
-  dog.id = new ShortUniqueId();
-  dogs.push(dog);
-  await db.write();
-  return res.status(200).send({ message: 'successfully registered' })
-})
+// server.post('/dogs', async (req, res) => {
+//   const { name, gender, age, place } = req.body;
+//   if (!name || !gender || !age || !place) {
+//     return res.status(409).send({ message: 'All Feilds Needed' });
+//   }
+//   await db.read();
+//   const { dogs } = db.data;
+//   const dog = { name, gender, age, place };
+//   dog.id = new ShortUniqueId();
+//   dogs.push(dog);
+//   await db.write();
+//   return res.status(200).send({ message: 'successfully registered' })
+// })
 
 server.use(router);
 
