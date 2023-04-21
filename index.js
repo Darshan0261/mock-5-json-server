@@ -29,7 +29,7 @@ server.get('/', (req, res) => {
   res.send('Base API endpoint')
 })
 
-server.post('/dogs/add', async (req, res) => {
+server.post('/dogs', async (req, res) => {
   const { name, gender, age, place } = req.body;
   if (!name || !gender || !age || !place) {
     return res.status(409).send({ message: 'All Feilds Needed' });
